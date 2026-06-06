@@ -6,7 +6,7 @@ from twilio.twiml.messaging_response import MessagingResponse
 app = Flask(__name__)
 
 CUSTOMGPT_API_KEY = os.environ.get("CUSTOMGPT_API_KEY")
-CUSTOMGPT_AGENT_ID = os.environ.get("CUSTOMGPT_AGENT_ID")
+CUSTOMGPT_AGENT_ID = "86582"
 
 @app.route("/webhook", methods=["POST"])
 def webhook():
@@ -25,7 +25,7 @@ def webhook():
     session_id = conv_data.get("data", {}).get("session_id", "")
 
     # Étape 2 : envoyer le message
-    msg_url = f"https://app.customgpt.ai/api/v1/projects/{CUSTOMGPT_AGENT_ID}/conversations/{session_id}/messages"
+    msg_url = f"https://app.customgpt.ai/api/v1/projects/{CUSTOMGPT_AGENT_ID}/conversations/{session_id}/messages?stream=false"
     msg_r = requests.post(msg_url, headers=headers, json={"prompt": question})
     msg_data = msg_r.json()
     answer = str(msg_data)
