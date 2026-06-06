@@ -18,12 +18,20 @@ def webhook():
         "Accept": "application/json"
     }
 
+    # Étape 1 : créer une conversation
     conv_url = f"https://app.customgpt.ai/api/v1/projects/{CUSTOMGPT_AGENT_ID}/conversations"
     conv_r = requests.post(conv_url, headers=headers, json={"name": "whatsapp"})
     conv_data = conv_r.json()
+    session_id = conv_data.get("data", {}).get("session_id", "")
+
+    # Étape 2 : envoyer le message
+    msg_url = f"https://app.customgpt.ai/api/v1/projects/{CUSTOMGPT_AGENT_ID}/conversations/{session_id}/messages?stream=false"
+    msg_r = requests.post(msg_url, headers=headers, json={"prompt": question})
+    msg_data = msg_r.json()
+    answer = msg_data.get("data", {}).get("openai_response", str(msg_data))
 
     resp = MessagingResponse()
-    resp.message(str(conv_data))
+    resp.message(answer)
     return str(resp)
 
 if __name__ == "__main__":
