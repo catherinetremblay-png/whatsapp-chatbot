@@ -22,16 +22,10 @@ def webhook():
     conv_url = f"https://app.customgpt.ai/api/v1/projects/{CUSTOMGPT_AGENT_ID}/conversations"
     conv_r = requests.post(conv_url, headers=headers, json={"name": "whatsapp"})
     conv_data = conv_r.json()
-    session_id = conv_data.get("data", {}).get("session_id", "")
-
-    # Étape 2 : envoyer le message avec GET
-    msg_url = f"https://app.customgpt.ai/api/v1/projects/{CUSTOMGPT_AGENT_ID}/conversations/{session_id}/messages"
-    msg_r = requests.get(msg_url, headers=headers, params={"prompt": question, "stream": "false"})
-    msg_data = msg_r.json()
-    answer = str(msg_data)
-
+    
+    # Retourner la réponse brute de l'étape 1 pour déboguer
     resp = MessagingResponse()
-    resp.message(answer)
+    resp.message(str(conv_data))
     return str(resp)
 
 if __name__ == "__main__":
