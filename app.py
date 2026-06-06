@@ -9,8 +9,8 @@ app = Flask(__name__)
 
 CUSTOMGPT_API_KEY = "10365|blOnzLmWa4jsaEuMAUErGLtlX7deYmcCjSQrnKfY0f3bfa02"
 CUSTOMGPT_AGENT_ID = "86582"
-TWILIO_ACCOUNT_SID = os.environ.get("TWILIO_ACCOUNT_SID", "MANQUANT")
-TWILIO_AUTH_TOKEN = os.environ.get("TWILIO_AUTH_TOKEN", "MANQUANT")
+TWILIO_ACCOUNT_SID = "AC336b176ed854de30b73cf52e0810160b"
+TWILIO_AUTH_TOKEN = "a37f82f2fadb34d879e36b2e5fe180c2"
 
 def get_and_send_response(question, to_number, from_number):
     headers = {
