@@ -5,7 +5,7 @@ from twilio.twiml.messaging_response import MessagingResponse
 
 app = Flask(__name__)
 
-CUSTOMGPT_API_KEY = os.environ.get("CUSTOMGPT_API_KEY")
+CUSTOMGPT_API_KEY = 10365|blOnzLmWa4jsaEuMAUErGLtlX7deYmcCjSQrnKfY0f3bfa02
 CUSTOMGPT_AGENT_ID = "86582"
 
 @app.route("/webhook", methods=["POST"])
